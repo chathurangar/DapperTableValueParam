@@ -15,3 +15,14 @@ CREATE TYPE [dbo].[UserTableType] AS TABLE(
 	[Location] [varchar](50) NULL
 )
 GO
+
+GO
+
+CREATE PROCEDURE [dbo].[InsertUsers]
+        @users UserTableType READONLY
+    AS
+    BEGIN
+        INSERT INTO Users ([Name], [Location])
+        SELECT [Name], [Location]
+        FROM @users
+    END
